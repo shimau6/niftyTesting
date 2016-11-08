@@ -1,0 +1,11 @@
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\bin\Release\webTopPage.exe.config
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\bin\Release\webTopPage.exe
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\bin\Release\webTopPage.pdb
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\obj\Release\webTopPage.Form1.resources
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\obj\Release\webTopPage.Properties.Resources.resources
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\obj\Release\webTopPage.csproj.GenerateResource.Cache
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\obj\Release\webTopPage.exe
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\obj\Release\webTopPage.pdb
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\bin\Release\Newtonsoft.Json.dll
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\bin\Release\Newtonsoft.Json.xml
+C:\Users\shimau6\Source\Repos\niftyTesting\webTopPage\webTopPage\obj\Release\webTopPage.csprojResolveAssemblyReference.cache
