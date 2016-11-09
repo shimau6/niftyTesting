@@ -10,23 +10,23 @@ namespace webTopPage
 {
     class ConnectNiftyClass
     {
-        public string createAccount(string name,string pass)
+        public ResponseCreateAccount createAccount(string name,string pass)
         {
             var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/users");
             req.Method = "POST";
             setHedder(req,false);
             SetContent(req, JsonSerializer.createAccount(name, pass));
-            return getResponse(req);
+            return JsonDeserializer.responseCreateAccount(getResponse(req));
         }
 
-        public string login(string name,string pass)
+        public ResponseLogin login(string name, string pass)
         {
-            string txt = @"userName=" + name + @"&password=" + pass;
+            string txt = URL_enc.loginStr(name, pass);
             var req = (HttpWebRequest)WebRequest.Create(URL_enc.addEnced("https://mb.api.cloud.nifty.com/2013-09-01/login?", txt));
             req.Method = "GET";
             req.ContentType = "application/json";
             setHedder(req, false);
-            return getResponse(req);
+            return JsonDeserializer.responseLogin(getResponse(req));
         }
 
         public string getUser(string objID)

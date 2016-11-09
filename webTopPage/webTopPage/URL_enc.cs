@@ -17,5 +17,10 @@ namespace webTopPage
         {
             return url + System.Web.HttpUtility.UrlPathEncode(addtion);
         }
+
+        public static string loginStr(string name, string pass)
+        {
+            return @"userName=" + name + @"&password=" + pass;
+        }
     }
 }

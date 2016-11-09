@@ -19,13 +19,5 @@ namespace webTopPage
         }
     }
 
-    [JsonObject("user")]
-    public class Json_ForCreateAccount
-    {
-        [JsonProperty("userName")]
-        public string username { get; set; }
-        [JsonProperty("password")]
-        [DefaultValue("demo")]
-        public string password { get; set; }
-    }
+
 }
