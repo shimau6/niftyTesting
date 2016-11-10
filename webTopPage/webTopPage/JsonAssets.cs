@@ -17,6 +17,14 @@ namespace webTopPage
         public string password { get; set; }
     }
 
+    public class Json_ForInputData
+    {
+        [JsonProperty("ParentObjectID")]
+        public string ParentObjectID { get; set; }
+        [JsonProperty("SVM")]
+        public string SVM { get; set; }
+    }
+
     [JsonObject("user")]
     public class ResponseCreateAccount
     {

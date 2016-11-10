@@ -17,6 +17,14 @@ namespace webTopPage
             data.password = password;
             return JsonConvert.SerializeObject(data);
         }
+
+        public static string createInputData(string parentID, string svm)
+        {
+            var data = new Json_ForInputData();
+            data.ParentObjectID = parentID;
+            data.SVM = svm;
+            return JsonConvert.SerializeObject(data);
+        }
     }
 
 

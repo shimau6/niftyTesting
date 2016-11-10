@@ -29,6 +29,20 @@ namespace webTopPage
             return JsonDeserializer.responseLogin(getResponse(req));
         }
 
+        public void logout()
+        {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/logout");
+            req.Method = "GET";
+            req.ContentType = "application/json";
+            setHedder(req, true);
+            JsonDeserializer.responseLogin(getResponse(req));
+        }
+
+        public void updateUser(string ID)
+        {
+
+        }
+
         public string getUser(string objID)
         {
             var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/users/" + userNiftyInfo.objID);
@@ -36,6 +50,30 @@ namespace webTopPage
             req.Method = "GET";
             req.ContentType = "application/json";
             return getResponse(req);
+        }
+
+        //調整中
+        public string setUserData()
+        {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/ownSVM");
+            req.Method = "POST";
+            setHedder(req, true);
+            SetContent(req, JsonSerializer.createInputData(userNiftyInfo.objID,"TEST"));
+            return getResponse(req);
+        }
+
+        //調整中
+        public string getUserData(string username)
+        {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/" + username+"/" + userNiftyInfo.objID);
+            setHedder(req, true);
+            req.Method = "GET";
+            req.ContentType = "application/json";
+            return getResponse(req);
+        }
+        public void uploadFile(string fileName)
+        {
+
         }
 
         private string getResponse(HttpWebRequest request)
@@ -95,7 +133,6 @@ namespace webTopPage
 
         private static void SetContent(HttpWebRequest request, string str)
         {
-            Console.WriteLine(str);
             ASCIIEncoding enc = new ASCIIEncoding();
             byte[] data = enc.GetBytes(str);
 
