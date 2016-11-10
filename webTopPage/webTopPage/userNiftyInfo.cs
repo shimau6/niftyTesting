@@ -12,5 +12,12 @@ namespace webTopPage
         public static string password = "";
         public static string session = "";
         public static string objID = "";
+
+        public static void set(ResponseLogin r)
+        {
+            username = r.userName;
+            session = r.sessionToken;
+            objID = r.objectId;
+        }
     }
 }

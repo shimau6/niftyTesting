@@ -27,13 +27,15 @@ namespace webTopPage
         private void button1_Click(object sender, EventArgs e)
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
-            textBox3.Text = c.createAccount(textBox1.Text, textBox2.Text).ToString();
+            var account = c.createAccount(textBox1.Text, textBox2.Text).ToString();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
-            textBox3.Text = c.login(textBox1.Text, textBox2.Text).ToString();
+            var account = c.login(textBox1.Text, textBox2.Text).ToString();
+
         }
     }
 
