@@ -52,4 +52,11 @@ namespace webTopPage
         [JsonProperty("updateDate")]
         public string updateDate { get; set; }
     }
+
+    [JsonObject("user")]
+    public class ResponseDataset
+    {
+        [JsonProperty("objectId")]
+        public string objectId { get; set; }
+    }
 }

@@ -33,17 +33,12 @@ namespace webTopPage
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ConnectNiftyClass c = new ConnectNiftyClass();
-            var account = c.login(textBox1.Text, textBox2.Text);
-            userNiftyInfo.set(account);
-            label4.Text = "ログインが完了しました。";
+            LoginFlow();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ConnectNiftyClass c = new ConnectNiftyClass();
-            var account = c.setUserData();
-            label4.Text = account;
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -51,6 +46,21 @@ namespace webTopPage
             ConnectNiftyClass c = new ConnectNiftyClass();
             c.logout();
             label4.Text = "ログアウトしたお";
+        }
+
+        private void LoginFlow()
+        {
+            ConnectNiftyClass c = new ConnectNiftyClass();
+            var account = c.login(textBox1.Text, textBox2.Text);
+            userNiftyInfo.set(account);
+            label4.Text = "ログインが完了しました。";
+            if (userNiftyInfo.svmID == null)
+            {
+                var res = c.setUserData();
+                userNiftyInfo.svmID = res.objectId;
+                c.updateUser();
+                label4.Text = "いろいろできた";
+            }
         }
     }
 

@@ -12,6 +12,7 @@ namespace webTopPage
         public static string password = "";
         public static string session = "";
         public static string objID = "";
+        public static string svmID;
 
         public static void set(ResponseLogin r)
         {

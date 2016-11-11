@@ -18,5 +18,10 @@ namespace webTopPage
         {
             return JsonConvert.DeserializeObject<ResponseLogin>(jsonStr);
         }
+
+        public static ResponseDataset responseDataset(string jsonStr)
+        {
+            return JsonConvert.DeserializeObject<ResponseDataset>(jsonStr);
+        }
     }
 }

@@ -38,9 +38,13 @@ namespace webTopPage
             JsonDeserializer.responseLogin(getResponse(req));
         }
 
-        public void updateUser(string ID)
+        public void updateUser()
         {
-
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/users/" + userNiftyInfo.objID);
+            req.Method = "PUT";
+            setHedder(req, true);
+            SetContent(req, JsonSerializer.oneJson("svm",userNiftyInfo.svmID));
+            getResponse(req);
         }
 
         public string getUser(string objID)
@@ -52,14 +56,13 @@ namespace webTopPage
             return getResponse(req);
         }
 
-        //調整中
-        public string setUserData()
+        public ResponseDataset setUserData()
         {
             var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/ownSVM");
             req.Method = "POST";
             setHedder(req, true);
-            SetContent(req, JsonSerializer.createInputData(userNiftyInfo.objID,"TEST"));
-            return getResponse(req);
+            SetContent(req, JsonSerializer.createInputData(userNiftyInfo.objID,""));
+            return JsonDeserializer.responseDataset(getResponse(req));
         }
 
         //調整中
