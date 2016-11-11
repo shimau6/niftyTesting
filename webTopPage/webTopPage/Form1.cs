@@ -38,7 +38,17 @@ namespace webTopPage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            fileUpload(@"C:\Users\student\Desktop\imglab_All\images\IMG_2839.JPG", "hunihuni_IMG_2839.JPG");
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = ".svm";
+            ofd.InitialDirectory = @".\imglab\SAVE";
+            ofd.Filter = "SVMファイル(*.svm)|*.svm";
+            ofd.Title = "保存したいSVMファイルを選択";
+            ofd.RestoreDirectory = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Console.WriteLine(ofd.FileName);
+            }
+            fileUpload(ofd.FileName, ofd.SafeFileName);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -69,6 +79,11 @@ namespace webTopPage
             c.uploadFile(PATH,name);
             c.setSVM(name);
             label4.Text = "できた";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
