@@ -19,6 +19,7 @@ namespace webTopPage
             username = r.userName;
             session = r.sessionToken;
             objID = r.objectId;
+            svmID = r.svm;
         }
     }
 }

@@ -17,12 +17,22 @@ namespace webTopPage
         public string password { get; set; }
     }
 
+    [JsonObject("user")]
     public class Json_ForInputData
     {
         [JsonProperty("ParentObjectID")]
         public string ParentObjectID { get; set; }
         [JsonProperty("SVM")]
         public string SVM { get; set; }
+    }
+
+    [JsonObject("user")]
+    public class Json_ForSVMData
+    {
+        [JsonProperty("svm")]
+        public string svm { get; set; }
+        [JsonProperty("user")]
+        public string user { get; set; }
     }
 
     [JsonObject("user")]
@@ -36,6 +46,7 @@ namespace webTopPage
         public string sessionToken { get; set; }
         [JsonProperty("userName")]
         public string userName { get; set; }
+
     }
 
     [JsonObject("user")]
@@ -51,6 +62,8 @@ namespace webTopPage
         public string userName { get; set; }
         [JsonProperty("updateDate")]
         public string updateDate { get; set; }
+        [JsonProperty("svm")]
+        public string svm { get; set; }
     }
 
     [JsonObject("user")]

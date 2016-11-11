@@ -38,7 +38,7 @@ namespace webTopPage
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            fileUpload(@"C:\Users\student\Desktop\imglab_All\images\IMG_2839.JPG", "hunihuni_IMG_2839.JPG");
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -61,6 +61,14 @@ namespace webTopPage
                 c.updateUser();
                 label4.Text = "いろいろできた";
             }
+        }
+
+        private void fileUpload(string PATH,string name)
+        {
+            ConnectNiftyClass c = new ConnectNiftyClass();
+            c.uploadFile(PATH,name);
+            c.setSVM(name);
+            label4.Text = "できた";
         }
     }
 

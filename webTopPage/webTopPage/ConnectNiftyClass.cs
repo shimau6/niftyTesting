@@ -65,18 +65,28 @@ namespace webTopPage
             return JsonDeserializer.responseDataset(getResponse(req));
         }
 
+        public void setSVM(string file)
+        {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm");
+            req.Method = "POST";
+            setHedder(req, true);
+            SetContent(req, JsonSerializer.createSVMData(file,userNiftyInfo.objID));
+            getResponse(req);
+        }
+
         //調整中
         public string getUserData(string username)
         {
-            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/" + username+"/" + userNiftyInfo.objID);
-            setHedder(req, true);
-            req.Method = "GET";
-            req.ContentType = "application/json";
-            return getResponse(req);
+            return "";
         }
-        public void uploadFile(string fileName)
-        {
 
+        public void uploadFile(string filePath,string fileName)
+        {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/files/"+fileName);
+            req.Method = "POST";
+            setHedder(req, false);
+            SetFile(req, filePath, fileName);
+            getResponse(req);
         }
 
         private string getResponse(HttpWebRequest request)
@@ -134,7 +144,7 @@ namespace webTopPage
             }
         }
 
-        private static void SetContent(HttpWebRequest request, string str)
+        private void SetContent(HttpWebRequest request, string str)
         {
             ASCIIEncoding enc = new ASCIIEncoding();
             byte[] data = enc.GetBytes(str);
@@ -145,6 +155,45 @@ namespace webTopPage
 
             Stream st = request.GetRequestStream();
             st.Write(data, 0, data.Length);
+            st.Close();
+        }
+
+        private void SetFile(HttpWebRequest request, string filepath,string filename)
+        {
+            string boundary = System.Environment.TickCount.ToString();
+            //string contentType = "application/octet-stream";
+            ASCIIEncoding enc = new ASCIIEncoding();
+            request.ContentType = "multipart/form-data; boundary=" + boundary;
+
+            string postData = "";
+            postData = "--" + boundary + "\r\n" +
+                "Content-Disposition: form-data; name=\"file\"; filename=\"" +
+                    filename + "\"\r\n" +
+                "Content-Type: application/octet-stream\r\n" +
+                "Content-Transfer-Encoding: binary\r\n\r\n";
+            //バイト型配列に変換
+            byte[] startData = enc.GetBytes(postData);
+            postData = "\r\n--" + boundary + "--\r\n";
+            byte[] endData = enc.GetBytes(postData);
+
+            var fs = new System.IO.FileStream(
+                filepath, System.IO.FileMode.Open,
+                System.IO.FileAccess.Read);
+
+            request.ContentLength = startData.Length + endData.Length + fs.Length;
+            Stream st = request.GetRequestStream();
+            st.Write(startData, 0, startData.Length);
+            byte[] readData = new byte[0x1000];
+            int readSize = 0;
+            while (true)
+            {
+                readSize = fs.Read(readData, 0, readData.Length);
+                if (readSize == 0)
+                    break;
+                st.Write(readData, 0, readSize);
+            }
+            fs.Close();
+            st.Write(endData, 0, endData.Length);
             st.Close();
         }
     }

@@ -26,6 +26,14 @@ namespace webTopPage
             return JsonConvert.SerializeObject(data);
         }
 
+        public static string createSVMData(string svm, string user)
+        {
+            var data = new Json_ForSVMData();
+            data.svm = svm;
+            data.user = user;
+            return JsonConvert.SerializeObject(data);
+        }
+
         public static string oneJson(string A, string B)
         {
             return @"{""" + A + @""": """ + B + @"""}";
