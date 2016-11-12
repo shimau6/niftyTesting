@@ -23,5 +23,11 @@ namespace webTopPage
         {
             return JsonConvert.DeserializeObject<ResponseDataset>(jsonStr);
         }
+
+
+        public static ResponseSVM responsesvm(string jsonStr)
+        {
+            return JsonConvert.DeserializeObject<ResponseSVM>(jsonStr);
+        }
     }
 }

@@ -65,13 +65,28 @@ namespace webTopPage
             return JsonDeserializer.responseDataset(getResponse(req));
         }
 
-        public void setSVM(string file)
+        public void setSVM(string file,string password)
         {
             var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm");
             req.Method = "POST";
             setHedder(req, true);
-            SetContent(req, JsonSerializer.createSVMData(file,userNiftyInfo.objID));
+            SetContent(req, JsonSerializer.createSVMData(file,userNiftyInfo.objID,password));
             getResponse(req);
+        }
+
+        public void deleteSVM(string filename)
+        {
+
+        }
+
+        public ResponseSVM listSVM()
+        {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm?where="
+                + JsonSerializer.oneJson("user",userNiftyInfo.objID));
+            setHedder(req, true);
+            req.Method = "GET";
+            req.ContentType = "application/json";
+            return JsonDeserializer.responsesvm(getResponse(req));
         }
 
         //調整中
@@ -89,6 +104,7 @@ namespace webTopPage
             getResponse(req);
         }
 
+        #region hunihuni
         private string getResponse(HttpWebRequest request)
         {
             string res = "";
@@ -196,6 +212,7 @@ namespace webTopPage
             st.Write(endData, 0, endData.Length);
             st.Close();
         }
+        #endregion
     }
 
 }

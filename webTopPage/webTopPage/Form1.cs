@@ -42,13 +42,13 @@ namespace webTopPage
             ofd.FileName = ".svm";
             ofd.InitialDirectory = @".\imglab\SAVE";
             ofd.Filter = "SVMファイル(*.svm)|*.svm";
-            ofd.Title = "保存したいSVMファイルを選択";
+            ofd.Title = "送信したいSVMファイルを選択";
             ofd.RestoreDirectory = true;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine(ofd.FileName);
+                fileUpload(ofd.FileName, ofd.SafeFileName,textBox3.Text);
             }
-            fileUpload(ofd.FileName, ofd.SafeFileName);
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -73,17 +73,38 @@ namespace webTopPage
             }
         }
 
-        private void fileUpload(string PATH,string name)
+        private void fileUpload(string PATH,string name,string password)
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             c.uploadFile(PATH,name);
-            c.setSVM(name);
+            c.setSVM(name,password);
             label4.Text = "できた";
         }
 
+        private ResponseSVM listedSVM;
         private void button5_Click(object sender, EventArgs e)
         {
+            listedSVM = new ConnectNiftyClass().listSVM();
+            listBox1.Items.Clear();
+            foreach(var l in listedSVM.results)
+            {
+                listBox1.Items.Add(l.svm);
+            }
+        }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedIndex >= 0)
+            {
+                var s = listedSVM.results.Find(x => x.svm.Equals(listBox1.SelectedItem.ToString()));
+                label6.Text = "Name : " + s.svm + Environment.NewLine
+                    + "Pass : " + s.pass;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //削除するからがんばろ？
         }
     }
 

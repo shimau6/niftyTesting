@@ -33,6 +33,8 @@ namespace webTopPage
         public string svm { get; set; }
         [JsonProperty("user")]
         public string user { get; set; }
+        [JsonProperty("pass")]
+        public string pass { get; set; }
     }
 
     [JsonObject("user")]
@@ -72,4 +74,25 @@ namespace webTopPage
         [JsonProperty("objectId")]
         public string objectId { get; set; }
     }
+
+    [JsonObject("user")]
+    public class ResponseSVM
+    {
+        [JsonProperty("results")]
+        public List<Result> results { get; set; }
+    }
+
+    [JsonObject("user")]
+    public class Result
+    {
+        [JsonProperty("objectId")]
+        public string objectId { get; set; }
+        [JsonProperty("svm")]
+        public string svm { get; set; }
+        [JsonProperty("user")]
+        public string user { get; set; }
+        [JsonProperty("pass")]
+        public string pass { get; set; }
+    }
+
 }
