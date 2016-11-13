@@ -126,6 +126,28 @@ namespace webTopPage
             setSVM(fileName, password);
         }
 
+        public string getFile(string fileName,string password)
+        {
+            //かいてるなう
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm?where="
+                        + JsonSerializer.oneJson("svm", fileName) + ","
+                        + JsonSerializer.oneJson("pass",password));
+            setHedder(req, true);
+            req.Method = "GET";
+            req.ContentType = "application/json";
+            var tmp = JsonDeserializer.responsesvm(getResponse(req));
+
+            if(tmp.results.Count > 0)
+            {
+                req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/files/" + fileName);
+                setHedder(req, false);
+                req.Method = "GET";
+                req.ContentType = "application/json";
+                return getResponse(req);
+            }
+            return "";
+        }
+
         #region hunihuni
         private string getResponse(HttpWebRequest request)
         {

@@ -116,6 +116,12 @@ namespace webTopPage
                 label6.Text = "";
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var str = new ConnectNiftyClass().getFile(textBox5.Text,textBox6.Text);
+
+        }
     }
 
 }
