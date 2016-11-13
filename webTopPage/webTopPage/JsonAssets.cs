@@ -93,6 +93,8 @@ namespace webTopPage
         public string user { get; set; }
         [JsonProperty("pass")]
         public string pass { get; set; }
+        [JsonProperty("updateDate")]
+        public string updateDate { get; set; }
     }
 
 }

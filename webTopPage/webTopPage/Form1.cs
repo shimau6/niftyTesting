@@ -76,8 +76,7 @@ namespace webTopPage
         private void fileUpload(string PATH,string name,string password)
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
-            c.uploadFile(PATH,name);
-            c.setSVM(name,password);
+            c.uploadFile(PATH,name,password);
             label4.Text = "できた";
         }
 
@@ -98,7 +97,8 @@ namespace webTopPage
             {
                 var s = listedSVM.results.Find(x => x.svm.Equals(listBox1.SelectedItem.ToString()));
                 label6.Text = "Name : " + s.svm + Environment.NewLine
-                    + "Pass : " + s.pass;
+                    + "Pass : " + s.pass + Environment.NewLine
+                    + "Date : " + s.updateDate;
             }
         }
 
@@ -113,6 +113,7 @@ namespace webTopPage
                 {
                     listBox1.Items.Add(l.svm);
                 }
+                label6.Text = "";
             }
         }
     }

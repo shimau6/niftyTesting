@@ -48,6 +48,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +147,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(14, 293);
+            this.button6.Location = new System.Drawing.Point(12, 385);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(112, 23);
             this.button6.TabIndex = 13;
@@ -155,7 +156,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(134, 292);
+            this.button7.Location = new System.Drawing.Point(134, 385);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(112, 23);
             this.button7.TabIndex = 14;
@@ -180,7 +181,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(244, 373);
+            this.textBox4.Location = new System.Drawing.Point(46, 414);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 19);
             this.textBox4.TabIndex = 17;
@@ -188,7 +189,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(186, 376);
+            this.label5.Location = new System.Drawing.Point(12, 417);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 12);
             this.label5.TabIndex = 18;
@@ -233,11 +234,21 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(14, 294);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(112, 23);
+            this.button9.TabIndex = 21;
+            this.button9.Text = "svmファイル受信";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 445);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
@@ -287,6 +298,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 

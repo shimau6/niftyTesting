@@ -113,13 +113,17 @@ namespace webTopPage
             return "";
         }
 
-        public void uploadFile(string filePath,string fileName)
+        public void uploadFile(string filePath,string fileName,string password)
         {
-            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/files/"+fileName);
+            var tmp = listSVM();
+            var sameFile = tmp.results.Find(x => x.svm.Equals(fileName));
+            if (sameFile != null) deleteSVM(fileName);
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/files/" + fileName);
             req.Method = "POST";
             setHedder(req, false);
             SetFile(req, filePath, fileName);
             getResponse(req);
+            setSVM(fileName, password);
         }
 
         #region hunihuni
