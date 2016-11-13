@@ -76,7 +76,25 @@ namespace webTopPage
 
         public void deleteSVM(string filename)
         {
+            var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/files/" + filename);
+            req.Method = "DELETE";
+            setHedder(req, false);
+            req.ContentType = "application/json";
+            getResponse(req);
 
+            //ここらへんAPI取得数多いから修正の余地あり
+            req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm?where="
+                + JsonSerializer.oneJson("svm", filename));
+            setHedder(req, true);
+            req.Method = "GET";
+            req.ContentType = "application/json";
+            var tmp = JsonDeserializer.responsesvm(getResponse(req));
+
+            req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm/" + tmp.results[0].objectId);
+            req.Method = "DELETE";
+            setHedder(req, false);
+            req.ContentType = "application/json";
+            getResponse(req);
         }
 
         public ResponseSVM listSVM()

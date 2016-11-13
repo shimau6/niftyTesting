@@ -46,7 +46,7 @@ namespace webTopPage
             ofd.RestoreDirectory = true;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                fileUpload(ofd.FileName, ofd.SafeFileName,textBox3.Text);
+                fileUpload(ofd.FileName,userNiftyInfo.username + "_" +  ofd.SafeFileName,textBox3.Text);
             }
 
         }
@@ -104,7 +104,16 @@ namespace webTopPage
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //削除するからがんばろ？
+            if (listBox1.SelectedIndex >= 0)
+            {
+                new ConnectNiftyClass().deleteSVM(listBox1.SelectedItem.ToString());
+                listedSVM = new ConnectNiftyClass().listSVM();
+                listBox1.Items.Clear();
+                foreach (var l in listedSVM.results)
+                {
+                    listBox1.Items.Add(l.svm);
+                }
+            }
         }
     }
 
