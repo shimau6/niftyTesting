@@ -128,7 +128,6 @@ namespace webTopPage
 
         public string getFile(string fileName,string password)
         {
-            //かいてるなう
             var req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm?where="
                         + JsonSerializer.oneJson("svm", fileName) + ","
                         + JsonSerializer.oneJson("pass",password));
@@ -143,7 +142,19 @@ namespace webTopPage
                 setHedder(req, false);
                 req.Method = "GET";
                 req.ContentType = "application/json";
-                return getResponse(req);
+                //バイナリとして読み込む　特定の位置に特定の名前で置く
+                using (var webRes = (HttpWebResponse)req.GetResponse())
+                    using (var sr = webRes.GetResponseStream())
+                    {
+                        byte[] readData = new byte[]{};
+                        sr.Read(readData, 0, 100);
+                        System.IO.FileStream fs = new System.IO.FileStream(
+                             @"C:\test.txt", System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                        
+                        fs.Close();
+                    }
+
+                return "";
             }
             return "";
         }

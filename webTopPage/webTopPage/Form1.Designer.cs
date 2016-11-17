@@ -46,8 +46,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -160,7 +160,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(134, 385);
+            this.button7.Location = new System.Drawing.Point(130, 385);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(112, 23);
             this.button7.TabIndex = 14;
@@ -220,14 +220,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "内容";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 12);
-            this.label6.TabIndex = 0;
-            // 
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(164, 60);
@@ -237,6 +229,14 @@
             this.button8.Text = "削除する";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 12);
+            this.label6.TabIndex = 0;
             // 
             // button9
             // 

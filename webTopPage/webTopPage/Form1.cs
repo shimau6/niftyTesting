@@ -119,8 +119,10 @@ namespace webTopPage
 
         private void button9_Click(object sender, EventArgs e)
         {
-            var str = new ConnectNiftyClass().getFile(textBox5.Text,textBox6.Text);
-
+            System.Net.WebClient wc = new System.Net.WebClient();
+            wc.DownloadFile("https://mb.api.cloud.nifty.com/2013-09-01/applications/uWQNRyEG9BTLATfj/publicFiles/u6_face_detector.svm", @"c:\Users\student\Desktop\asas.svm");
+            wc.Dispose();
+            //new ConnectNiftyClass().getFile(textBox5.Text,textBox6.Text);
         }
     }
 
