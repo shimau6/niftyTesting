@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -110,18 +109,9 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(269, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 12);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "ここに報告とかが入るよ";
-            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(14, 141);
+            this.button3.Location = new System.Drawing.Point(14, 139);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(112, 23);
             this.button3.TabIndex = 10;
@@ -151,27 +141,29 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(12, 385);
+            this.button6.Location = new System.Drawing.Point(14, 374);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(112, 23);
             this.button6.TabIndex = 13;
             this.button6.Text = "カメラデバイスの起動";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(130, 385);
+            this.button7.Location = new System.Drawing.Point(14, 403);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(112, 23);
             this.button7.TabIndex = 14;
             this.button7.Text = "imglabの起動";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(163, 141);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 19);
+            this.textBox3.Size = new System.Drawing.Size(202, 19);
             this.textBox3.TabIndex = 15;
             // 
             // label3
@@ -185,7 +177,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(46, 414);
+            this.textBox4.Location = new System.Drawing.Point(168, 374);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 19);
             this.textBox4.TabIndex = 17;
@@ -193,7 +185,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 417);
+            this.label5.Location = new System.Drawing.Point(128, 377);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 12);
             this.label5.TabIndex = 18;
@@ -252,14 +244,14 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(168, 296);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 19);
+            this.textBox5.Size = new System.Drawing.Size(197, 19);
             this.textBox5.TabIndex = 22;
             // 
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(168, 321);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 19);
+            this.textBox6.Size = new System.Drawing.Size(197, 19);
             this.textBox6.TabIndex = 23;
             // 
             // label7
@@ -301,7 +293,6 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -309,7 +300,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "おてがるそうち";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -325,7 +316,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;

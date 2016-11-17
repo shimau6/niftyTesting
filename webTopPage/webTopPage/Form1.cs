@@ -28,7 +28,7 @@ namespace webTopPage
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             var account = c.createAccount(textBox1.Text, textBox2.Text);
-            label4.Text = "新規登録が完了しました。ログインしてください";
+            if(account.objectId != null) MyUtility.CONFIRM("新規登録が完了しました。ログインしてください");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -39,14 +39,20 @@ namespace webTopPage
         private void button3_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.FileName = ".svm";
-            ofd.InitialDirectory = @".\imglab\SAVE";
-            ofd.Filter = "SVMファイル(*.svm)|*.svm";
+            ofd.FileName = "*.svm";
+            ofd.InitialDirectory = APPDATA.WORKING_FOLDER;
+            ofd.Filter = "svmファイル|*.svm";
             ofd.Title = "送信したいSVMファイルを選択";
-            ofd.RestoreDirectory = true;
+
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                fileUpload(ofd.FileName,userNiftyInfo.username + "_" +  ofd.SafeFileName,textBox3.Text);
+                if (ofd.SafeFileName.Split('.')[1].Equals("svm"))
+                {
+                    fileUpload(ofd.FileName, userNiftyInfo.username + "_" + ofd.SafeFileName, textBox3.Text);
+                }else
+                {
+                    MyUtility.WARNING("SVMファイルを選択してくださいよ…");
+                }
             }
 
         }
@@ -55,21 +61,24 @@ namespace webTopPage
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             c.logout();
-            label4.Text = "ログアウトしたお";
+            MyUtility.CONFIRM("ログアウトしました");
         }
 
         private void LoginFlow()
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             var account = c.login(textBox1.Text, textBox2.Text);
-            userNiftyInfo.set(account);
-            label4.Text = "ログインが完了しました。";
-            if (userNiftyInfo.svmID == null)
+            if (account.objectId != null)
             {
-                var res = c.setUserData();
-                userNiftyInfo.svmID = res.objectId;
-                c.updateUser();
-                label4.Text = "いろいろできた";
+                userNiftyInfo.set(account);
+                MyUtility.CONFIRM("ログインしました");
+                if (userNiftyInfo.svmID == null)
+                {
+                    var res = c.setUserData();
+                    userNiftyInfo.svmID = res.objectId;
+                    c.updateUser();
+                    MyUtility.CONFIRM("初期設定が色々完了しました。詳しいことはあとで作ります");
+                }
             }
         }
 
@@ -77,7 +86,7 @@ namespace webTopPage
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             c.uploadFile(PATH,name,password);
-            label4.Text = "できた";
+            MyUtility.CONFIRM("アップロードが完了しました。たぶん");
         }
 
         private ResponseSVM listedSVM;
@@ -114,15 +123,42 @@ namespace webTopPage
                     listBox1.Items.Add(l.svm);
                 }
                 label6.Text = "";
+                MyUtility.CONFIRM("削除が完了しました");
             }
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            System.Net.WebClient wc = new System.Net.WebClient();
-            wc.DownloadFile("https://mb.api.cloud.nifty.com/2013-09-01/applications/uWQNRyEG9BTLATfj/publicFiles/u6_face_detector.svm", @"c:\Users\student\Desktop\asas.svm");
-            wc.Dispose();
-            //new ConnectNiftyClass().getFile(textBox5.Text,textBox6.Text);
+            if (new ConnectNiftyClass().abletoGetFile(textBox5.Text, textBox6.Text))
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                wc.DownloadFile("https://mb.api.cloud.nifty.com/2013-09-01/applications/uWQNRyEG9BTLATfj/publicFiles/" + textBox5.Text,
+                    APPDATA.WORKING_FOLDER + @"\" + textBox5.Text);
+                wc.Dispose();
+                MyUtility.CONFIRM("ダウンロードが完了しました");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "*.svm";
+            ofd.InitialDirectory = APPDATA.WORKING_FOLDER;
+            ofd.Filter = "svmファイル|*.svm";
+            ofd.Title = "使用したいSVMファイルの選択";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (ofd.SafeFileName.Split('.')[1].Equals("svm"))
+                {
+                    //カメラアプリの起動　こんどつくる
+                }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //imglabの起動　あしたつくる
         }
     }
 
