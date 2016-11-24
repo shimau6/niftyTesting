@@ -151,14 +151,27 @@ namespace webTopPage
             {
                 if (ofd.SafeFileName.Split('.')[1].Equals("svm"))
                 {
-                    //カメラアプリの起動　こんどつくる
+                    //svm ナンバー　
+                    //0 0 出力先
+                    //1 動画データ　出力先
+                    //2 静画データ　出力先
+                    System.Diagnostics.Process p;
+                    p =
+                    System.Diagnostics.Process.Start(
+                        @".\svm_usingTest.exe"
+                        , ofd.FileName);
+                    p.WaitForExit();
                 }
             }
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //imglabの起動　あしたつくる
+            System.Diagnostics.Process p;
+            p =
+            System.Diagnostics.Process.Start(
+                @".\imglab.exe");
+            p.WaitForExit();
         }
     }
 
