@@ -19,17 +19,22 @@ namespace webTopPage
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenCamera();
+            OpenCamera(0,"none",textBox2.Text);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            OpenCamera();
+            OpenCamera(1, textBox3.Text, textBox2.Text);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            OpenCamera();
+            OpenCamera(2, textBox4.Text, textBox2.Text);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            OpenCamera(3, "0", "0");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -49,9 +54,60 @@ namespace webTopPage
             }
         }
 
-        private void OpenCamera()
+        private void OpenCamera(int number,string movieUrl,string outputUrl)
         {
-
+            if (outputUrl == "" || outputUrl == null) outputUrl = "0";
+            string arg = textBox1.Text + " " + number + " " + movieUrl + " " + outputUrl;
+            System.Diagnostics.Process p;
+            p =
+            System.Diagnostics.Process.Start(
+                @".\svm_usingTest.exe"
+                , arg);
+            p.WaitForExit();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "検知画像を入れたいフォルダを指定してください。";
+            fbd.RootFolder = Environment.SpecialFolder.Desktop;
+            fbd.SelectedPath = @"C:\Windows";
+            fbd.ShowNewFolderButton = true;
+
+            if (fbd.ShowDialog(this) == DialogResult.OK)
+            {
+                textBox2.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "";
+            ofd.InitialDirectory = APPDATA.WORKING_FOLDER;
+            ofd.Filter = "動画(*.mp4;*.avi;*.gif)|*.mp4;*.avi;*.gif";
+            ofd.Title = "使用したい動画ファイルの選択";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox3.Text = ofd.FileName;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "";
+            ofd.InitialDirectory = APPDATA.WORKING_FOLDER;
+            ofd.Filter = "静画(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp";
+            ofd.Title = "使用したい静画ファイルの選択";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox4.Text = ofd.FileName;
+            }
+        }
+
+
     }
 }

@@ -141,28 +141,9 @@ namespace webTopPage
 
         private void button6_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.FileName = "*.svm";
-            ofd.InitialDirectory = APPDATA.WORKING_FOLDER;
-            ofd.Filter = "svmファイル|*.svm";
-            ofd.Title = "使用したいSVMファイルの選択";
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                if (ofd.SafeFileName.Split('.')[1].Equals("svm"))
-                {
-                    //svm ナンバー　
-                    //0 0 出力先
-                    //1 動画データ　出力先
-                    //2 静画データ　出力先
-                    System.Diagnostics.Process p;
-                    p =
-                    System.Diagnostics.Process.Start(
-                        @".\svm_usingTest.exe"
-                        , ofd.FileName);
-                    p.WaitForExit();
-                }
-            }
+            OpenCameraForm o = new OpenCameraForm();
+            o.ShowDialog(this);
+            o.Dispose();
         }
 
         private void button7_Click(object sender, EventArgs e)
