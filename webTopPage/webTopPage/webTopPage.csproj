@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APPDATA.cs" />
+    <Compile Include="ConnectException.cs" />
     <Compile Include="ConnectNiftyClass.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -28,7 +28,7 @@ namespace webTopPage
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             var account = c.createAccount(textBox1.Text, textBox2.Text);
-            if(account.objectId != null) MyUtility.CONFIRM("新規登録が完了しました。ログインしてください");
+            //if(account.objectId != null) MyUtility.CONFIRM("新規登録が完了しました。ログインしてください");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -61,32 +61,19 @@ namespace webTopPage
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             c.logout();
-            MyUtility.CONFIRM("ログアウトしました");
         }
 
         private void LoginFlow()
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             var account = c.login(textBox1.Text, textBox2.Text);
-            if (account.objectId != null)
-            {
-                userNiftyInfo.set(account);
-                MyUtility.CONFIRM("ログインしました");
-                if (userNiftyInfo.svmID == null)
-                {
-                    var res = c.setUserData();
-                    userNiftyInfo.svmID = res.objectId;
-                    c.updateUser();
-                    MyUtility.CONFIRM("初期設定が色々完了しました。詳しいことはあとで作ります");
-                }
-            }
+
         }
 
         private void fileUpload(string PATH,string name,string password)
         {
             ConnectNiftyClass c = new ConnectNiftyClass();
             c.uploadFile(PATH,name,password);
-            MyUtility.CONFIRM("アップロードが完了しました。たぶん");
         }
 
         private ResponseSVM listedSVM;

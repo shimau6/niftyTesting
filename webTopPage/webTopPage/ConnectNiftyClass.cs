@@ -16,7 +16,17 @@ namespace webTopPage
             req.Method = "POST";
             setHedder(req,false);
             SetContent(req, JsonSerializer.createAccount(name, pass));
-            return JsonDeserializer.responseCreateAccount(getResponse(req));
+            try
+            {
+                var account = JsonDeserializer.responseCreateAccount(getResponse(req));
+                MyUtility.CONFIRM("新規作成が完了しました。ログインしてください");
+                return account;
+            }
+            catch(Exception e)
+            {
+                new ConnectException().showMessage(e.Message,0);
+                return null;
+            }
         }
 
         public ResponseLogin login(string name, string pass)
@@ -26,7 +36,28 @@ namespace webTopPage
             req.Method = "GET";
             req.ContentType = "application/json";
             setHedder(req, false);
-            return JsonDeserializer.responseLogin(getResponse(req));
+            try
+            {
+                var account = JsonDeserializer.responseLogin(getResponse(req));
+                if (account.objectId != null)
+                {
+                    userNiftyInfo.set(account);
+                    MyUtility.CONFIRM("ログインしました");
+                    if (userNiftyInfo.svmID == null)
+                    {
+                        var res = setUserData();
+                        userNiftyInfo.svmID = res.objectId;
+                        updateUser();
+                        //MyUtility.CONFIRM("初期設定が色々完了しました。詳しいことはあとで作ります");
+                    }
+                }
+                return account;
+            }
+            catch(Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 1);
+                return null;
+            }
         }
 
         public void logout()
@@ -35,7 +66,15 @@ namespace webTopPage
             req.Method = "GET";
             req.ContentType = "application/json";
             setHedder(req, true);
-            JsonDeserializer.responseLogin(getResponse(req));
+            try
+            {
+                JsonDeserializer.responseLogin(getResponse(req));
+                MyUtility.CONFIRM("ログアウトしました");
+            }
+            catch (Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 2);
+            }
         }
 
         public void updateUser()
@@ -44,7 +83,14 @@ namespace webTopPage
             req.Method = "PUT";
             setHedder(req, true);
             SetContent(req, JsonSerializer.oneJson("svm",userNiftyInfo.svmID));
-            getResponse(req);
+            try
+            {
+                getResponse(req);
+            }
+            catch (Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 3);
+            }
         }
 
         public string getUser(string objID)
@@ -53,7 +99,15 @@ namespace webTopPage
             setHedder(req, true);
             req.Method = "GET";
             req.ContentType = "application/json";
-            return getResponse(req);
+            try
+            {
+                return getResponse(req);
+            }
+            catch (Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 4);
+                return null;
+            }
         }
 
         public ResponseDataset setUserData()
@@ -62,7 +116,15 @@ namespace webTopPage
             req.Method = "POST";
             setHedder(req, true);
             SetContent(req, JsonSerializer.createInputData(userNiftyInfo.objID,""));
-            return JsonDeserializer.responseDataset(getResponse(req));
+            try
+            {
+                return JsonDeserializer.responseDataset(getResponse(req));
+            }
+            catch (Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 5);
+                return null;
+            }
         }
 
         public void setSVM(string file,string password)
@@ -82,7 +144,6 @@ namespace webTopPage
             req.ContentType = "application/json";
             getResponse(req);
 
-            //ここらへんAPI取得数多いから修正の余地あり
             req = (HttpWebRequest)WebRequest.Create("https://mb.api.cloud.nifty.com/2013-09-01/classes/svm?where="
                 + JsonSerializer.oneJson("svm", filename));
             setHedder(req, true);
@@ -122,8 +183,16 @@ namespace webTopPage
             req.Method = "POST";
             setHedder(req, false);
             SetFile(req, filePath, fileName);
-            getResponse(req);
-            setSVM(fileName, password);
+            try
+            {
+                getResponse(req);
+                setSVM(fileName, password);
+                MyUtility.CONFIRM("アップロードが完了しました。");
+            }
+            catch (Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 10);
+            }
         }
 
         public bool abletoGetFile(string fileName, string password)
@@ -134,9 +203,17 @@ namespace webTopPage
             setHedder(req, true);
             req.Method = "GET";
             req.ContentType = "application/json";
-            var tmp = JsonDeserializer.responsesvm(getResponse(req));
+            try
+            {
+                var tmp = JsonDeserializer.responsesvm(getResponse(req));
+                return tmp.results.Count > 0;
+            }
+            catch (Exception e)
+            {
+                new ConnectException().showMessage(e.Message, 11);
+                return false;
+            }
 
-            return tmp.results.Count > 0;
         }
 
         #region hunihuni
@@ -150,9 +227,10 @@ namespace webTopPage
                 {
                     res = sr.ReadToEnd();
                 }
-            }catch(Exception e)
+            }catch
             {
-                MyUtility.WARNING("エラー：" + e.Message);
+                throw;
+                //MyUtility.WARNING(e.Message);
             }
             return res;
         }

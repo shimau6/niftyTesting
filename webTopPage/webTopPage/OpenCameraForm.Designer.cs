@@ -36,6 +36,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
@@ -43,8 +45,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,6 +138,23 @@
             this.tabPage3.Text = "静画から検知";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(429, 6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(117, 19);
+            this.button8.TabIndex = 5;
+            this.button8.Text = "使用する静画";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(7, 6);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(409, 19);
+            this.textBox4.TabIndex = 4;
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(429, 197);
@@ -203,23 +220,6 @@
             this.textBox2.Size = new System.Drawing.Size(419, 19);
             this.textBox2.TabIndex = 4;
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(7, 6);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(409, 19);
-            this.textBox4.TabIndex = 4;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(429, 6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(117, 19);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "使用する静画";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // OpenCameraForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -231,7 +231,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tabControl1);
             this.Name = "OpenCameraForm";
-            this.Text = "OpenCameraForm";
+            this.Text = "カメラくん";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
