@@ -57,7 +57,14 @@ namespace webTopPage
         private void OpenCamera(int number,string movieUrl,string outputUrl)
         {
             if (outputUrl == "" || outputUrl == null) outputUrl = "0";
-            string arg = textBox1.Text + " " + number + " " + movieUrl + " " + outputUrl;
+            else {
+                string time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                outputUrl += @"\" + time;
+                System.IO.Directory.CreateDirectory(outputUrl); 
+            }
+            string outputImageCuted = "0";
+            if (checkBox1.Checked) outputImageCuted = "1";
+            string arg = textBox1.Text + " " + number + " " + movieUrl + " " + outputUrl + " " + outputImageCuted;
             System.Diagnostics.Process p;
             p =
             System.Diagnostics.Process.Start(
